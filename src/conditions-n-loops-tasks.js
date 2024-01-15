@@ -382,20 +382,7 @@ function getSpiralMatrix(size) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-// function rotateMatrix(matrix) {
-//   const resMatrix = [];
-//   const matrixCopy = matrix;
-//   for (let i = 0; i < matrixCopy.length; i += 1) {
-//     resMatrix[i] = [];
-//   }
-//   for (let i = 0; i < matrixCopy.length; i += 1) {
-//     for (let j = 0; j < matrixCopy[i].length; j += 1) {
-//       const elem = matrixCopy[i][j];
-//       resMatrix[j][matrixCopy.length - 1 - i] = elem;
-//     }
-//   }
-//   return resMatrix;
-// }
+
 function rotateMatrix(matrix) {
   const res = matrix;
   for (let i = 0; i < matrix.length / 2; i += 1) {
@@ -427,8 +414,18 @@ function rotateMatrix(matrix) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const newArr = arr;
+  for (let i = 0; i < arr.length - 1; i += 1) {
+    let j = i + 1;
+    while (j !== 0 && newArr[j] < newArr[j - 1]) {
+      const cur = newArr[j - 1];
+      newArr[j - 1] = newArr[j];
+      newArr[j] = cur;
+      j -= 1;
+    }
+  }
+  return newArr;
 }
 
 /**
@@ -448,8 +445,21 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let res = str;
+  for (let i = 0; i < iterations; i += 1) {
+    let right = '';
+    let left = '';
+    for (let j = 0; j < str.length; j += 1) {
+      if (j % 2 === 0) {
+        left += res[j];
+      } else {
+        right += res[j];
+      }
+    }
+    res = left + right;
+  }
+  return res;
 }
 
 /**
